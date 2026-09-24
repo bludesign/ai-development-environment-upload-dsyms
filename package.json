@@ -1,0 +1,52 @@
+{
+  "name": "ai-development-environment-upload-dsyms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Action that uploads dSYMs to an AI Development Environment control plane",
+  "license": "MIT",
+  "author": "BluDesign, LLC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bludesign/ai-development-environment-upload-dsyms.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24.16.0 <25"
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "full-check": "npm run format && npm run lint:fix && npm run type-check && npm run test:run && npm run build",
+    "full-check:ci": "npm run format:check && npm run lint && npm run type-check && npm run test:run && npm run build",
+    "upgrade": "ncu -u --cooldown 48h && npm install --min-release-age=2 && npm upgrade --min-release-age=2",
+    "upgrade:check": "ncu --cooldown 48h"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/glob": "^0.7.0",
+    "yazl": "^3.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10",
+    "@types/node": "^24",
+    "@types/yauzl": "^3.4.0",
+    "@types/yazl": "^3.3.1",
+    "esbuild": "0.28.2",
+    "eslint": "^10",
+    "npm-check-updates": "23.1.0",
+    "prettier": "3.9.8",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "5.0.1",
+    "yauzl": "^3.4.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

@@ -1,0 +1,69 @@
+name: Upload dSYMs to AI Development Environment
+description: Find, zip, and upload iOS and macOS dSYMs to an AI Development Environment control plane.
+author: BluDesign, LLC
+branding:
+  icon: upload-cloud
+  color: blue
+
+inputs:
+  url:
+    description: Origin of the control plane, such as https://aide.example.com. Not needed with dry_run.
+    required: true
+  api_key:
+    description: API key (aide_…) from System → API Keys, sent as X-API-Key. Store it as a secret. Not needed with dry_run.
+    required: true
+  dsym_paths:
+    description: >-
+      Paths or glob patterns, one per line: .dSYM bundles, folders that contain them (such as an .xcarchive or its
+      dSYMs folder), or .zip files of dSYMs. Lines that start with ! exclude matches.
+    required: true
+  headers:
+    description: >-
+      Extra HTTP headers sent with every request, one "Name: value" per line, such as Cloudflare Access
+      service token headers. Values are masked in the log.
+    required: false
+    default: ""
+  project_name:
+    description: Project shown on the uploaded dSYMs.
+    required: false
+    default: ${{ github.repository }}
+  build_id:
+    description: Build identifier shown on the uploaded dSYMs.
+    required: false
+    default: ${{ github.run_id }}
+  build_url:
+    description: Link shown on the uploaded dSYMs.
+    required: false
+    default: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  chunk_size:
+    description: Upload chunk size in MiB, from 1 to 16. Lower it when a proxy limits request bodies to less than 16 MiB.
+    required: false
+    default: "16"
+  retries:
+    description: How many times to retry a request after a network error, timeout, rate limit, or 5xx response, including Cloudflare's 52x errors.
+    required: false
+    default: "5"
+  timeout:
+    description: Seconds to wait for each request, from 10 to 600.
+    required: false
+    default: "120"
+  if_no_files_found:
+    description: What to do when no dSYMs match — error, warn, or ignore.
+    required: false
+    default: error
+  dry_run:
+    description: Find and zip the dSYMs without uploading them.
+    required: false
+    default: "false"
+
+outputs:
+  uploads:
+    description: >-
+      JSON array with one entry per uploaded zip: id, filename, sizeBytes, sha256, duplicate, and dsyms (id,
+      bundleName, version, build, url, and slices of uuid and arch).
+  uuids:
+    description: UUIDs of the uploaded dSYMs, one per line, as xcrun dwarfdump --uuid prints them.
+
+runs:
+  using: node24
+  main: dist/index.js

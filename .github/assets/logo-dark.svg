@@ -1,0 +1,11 @@
+<svg width="148" height="32" viewBox="0 0 148 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Development Environment">
+  <rect width="32" height="32" rx="8" fill="#FAFAFA"/>
+  <svg x="7.5" y="7.5" width="17" height="17" viewBox="-1 -0.5 26 26" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/>
+    <rect x="14" y="2" width="8" height="8" rx="1"/>
+  </svg>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#FAFAFA">
+    <text x="40" y="11.2" textLength="108" lengthAdjust="spacingAndGlyphs">AI Development</text>
+    <text x="40" y="28.7" textLength="86" lengthAdjust="spacingAndGlyphs">Environment</text>
+  </g>
+</svg>
